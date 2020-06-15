@@ -1,0 +1,13 @@
+https://github.com/jothi1971/scrapy_nfl_players.git
+div class="images" top player images
+
+players = response.css('div.images a img::attr(alt)').getall()
+players = response.css('div.images a')
+logging.info('jothi %s',player.css('img::attr(alt)').get())
+
+==========
+players
+class="players"
+itemprop="name" inside h1
+
+position text
