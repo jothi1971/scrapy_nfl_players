@@ -12,3 +12,5 @@ scrapy crawl players -o players_info.csv
 or
 scrapy crawl players -o players_info.json 
 for output in json format
+
+refer to players_info.json in the root directory for sample output 
