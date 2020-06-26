@@ -1,5 +1,7 @@
 import scrapy
 import logging
+from ..items import NflScrapItem
+
 '''
 Extract player info from www.pro-football-reference.com
 These players are displayed in the home page 
@@ -18,6 +20,9 @@ class PlayersSpider(scrapy.Spider):
 
 
     def parse_player_details(self,response):
+        print('spider parser')
+        player = NflScrapItem()
+
         player_detail = response.css('div.players')
         # extract player name - text inside h1
         name = player_detail.css('h1::text').get()
@@ -51,11 +56,12 @@ class PlayersSpider(scrapy.Spider):
                 team = para.css('p a::text').get()
                 break
 
+        player['name'] = name
+        player['position'] = position[2:]
+        player['height_and_weight'] = height_and_weight
+        player['team'] = team
+
         # output scrapped data
-        yield {
-            'name': name,
-            'position': position[2:],
-            'height and weight': height_and_weight,
-            'team': team
-        }
+        yield player
+
 
